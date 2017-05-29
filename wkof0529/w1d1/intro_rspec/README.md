@@ -13,3 +13,5 @@ $ rspec spec/hello_spec.rb
 
 To selectively run a particular chunk in a spec file, you should run:
 $ rspec spec/hello_spec.rb:5
+
+Note that you can onl test public methods but not protected methods. RSpec will not permit you to do that.
