@@ -1,0 +1,94 @@
+// https://learnwebcode.github.io/json-example/animals-1.json
+[
+  {
+    "name": "Meowsy",
+    "species" : "cat",
+    "foods": {
+      "likes": ["tuna", "catnip"],
+      "dislikes": ["ham", "zucchini"]
+    }
+  },
+  {
+    "name": "Barky",
+    "species" : "dog",
+    "foods": {
+      "likes": ["bones", "carrots"],
+      "dislikes": ["tuna"]
+    }
+  },
+  {
+    "name": "Purrpaws",
+    "species" : "cat",
+    "foods": {
+      "likes": ["mice"],
+      "dislikes": ["cookies"]
+    }
+  }
+]
+
+
+
+
+
+
+
+// https://learnwebcode.github.io/json-example/animals-2.json
+[
+  {
+    "name": "Whiskers",
+    "species" : "cat",
+    "foods": {
+      "likes": ["celery", "strawberries"],
+      "dislikes": ["carrots"]
+    }
+  },
+  {
+    "name": "Woof",
+    "species" : "dog",
+    "foods": {
+      "likes": ["dog food"],
+      "dislikes": ["cat food"]
+    }
+  },
+  {
+    "name": "Fluffy",
+    "species" : "cat",
+    "foods": {
+      "likes": ["canned food"],
+      "dislikes": ["dry food"]
+    }
+  }
+]
+
+
+
+
+
+
+// https://learnwebcode.github.io/json-example/animals-3.json
+[
+  {
+    "name": "Kitty",
+    "species" : "cat",
+    "foods": {
+      "likes": ["fresh food"],
+      "dislikes": ["stale food"]
+    }
+  },
+  {
+    "name": "Pupster",
+    "species" : "dog",
+    "foods": {
+      "likes": ["tomatoes", "peas"],
+      "dislikes": ["bread"]
+    }
+  },
+  {
+    "name": "Tux",
+    "species" : "cat",
+    "foods": {
+      "likes": ["fancy dishes"],
+      "dislikes": ["basic cat food"]
+    }
+  }
+]
