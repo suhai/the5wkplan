@@ -1,0 +1,1 @@
+In this project, Scout is used to compile Sass into css.
