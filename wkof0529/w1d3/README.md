@@ -1,1 +1,1 @@
-# The work for today started with completing work from w1d2. Work then proceeded to starting and completing more bootstrap projects (the photogallery included in the bootstrap folder in w1d1) to ensure an organized repository. 
+The work for today started with completing work from w1d2, then proceeded to work on commpleting more bootstrap projects (the photogallery included in the bootstrap folder in w1d1) to ensure an organized repository.
