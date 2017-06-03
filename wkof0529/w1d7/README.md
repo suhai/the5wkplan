@@ -1,1 +1,1 @@
-Info about this readme coming soon
+Check the FreeCell readme for info.

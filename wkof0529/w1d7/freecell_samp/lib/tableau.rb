@@ -30,9 +30,6 @@ class Tableau
 
   def initialize(seed = true)
     @piles = Array.new(16) { [] }
-    # need to refactor to use separate classes and abstract away from physical
-    #   board geometry
-
     # piles       rows 0..7
     # freecells   rows 8..11
     # foundations rows 12..15
@@ -54,20 +51,6 @@ class Tableau
   def cards
     @piles.flatten.compact
   end
-
-  #  currently unused but will keep code for implementing AI
-  # def deep_dup
-  #   copied_tab = Tableau.new(false)
-  #
-  #   cards.each do |card|
-  #     options = {suit:     card.suit,     value:   card.value,
-  #                position: card.position.dup, tableau: copied_tab}
-  #     new_card = MoveableCard.new(options)
-  #     copied_tab.piles[card.position[0]] << new_card
-  #   end
-  #
-  #   copied_tab
-  # end
 
   def free_cells
     @piles.take(12).count(&:empty?) # excludes foundations
