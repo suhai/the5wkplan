@@ -1,4 +1,4 @@
-/* ==========  SQL NOTES ==========
+/* ==========  SQL NOTES (PostgreSQL) ==========
 
 1. run ~$ psql to initiate psql. You may get soemthing like:
 
