@@ -1,7 +1,5 @@
 require 'colorize'
-
 # -*- coding: utf-8 -*-
-
 # Represents a playing card.
 class Card
   SUIT_STRINGS = {
