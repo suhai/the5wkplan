@@ -1,10 +1,104 @@
-STRUCTURED QUERY LANGUAGE
+-- https://community.modeanalytics.com/sql/tutorial/introduction-to-sql/
+-- STRUCTURED QUERY LANGUAGE
+1. Think of INNER JOIN as the set intersection of a venn diagram
+2. Think of OUTER JOIN
+  - LEFT OUTER JOIN as similar to the entire left circle of the venn diagram including the intersection of the left and right circles. This makes use of foreign keys
+  - RIGHT OUTER JOIN as simialr to the entire right circle of the venn diagram including the intersection of the left and right circles. This makes use of foreign keys
+  - FULL OUTER JOIN as the union of the two circles including the intersection, that makes use of foreign keys.
+
+
+-- SELECT
+-- FROM
+-- WHERE
+-- COUNT 
+-- SUM
+-- IN (a group or list to filter)
+-- NOT IN
+-- JOIN 
+-- AS 
+-- ON 
+-- IS 
+-- BETWEEN (A-inclusive AND B-exclusive)
+-- NULL 
+-- NOT NULL 
+-- ORDER BY 
+-- GROUP BY 
+-- DESC 
+-- ASC 
+-- =, !=, >, >=, <, <= 
+
+
+
+SOME EXAMPLES OF QUERYING
+-- 1. In a car database there is a Model table with columns, ModelID, MakeID and ModelName and a Car table with columns, CarID, ModelID, VIN, ModelYear and StickerPrice.
+-- For all cars in the database, show Model Name, VIN and Sticker Price from the Model and Car tables in one result set.
+SELECT ModelName, VIN, StickerPrice FROM model INNER JOIN car ON model.ModelID = car.ModelID;
+
+-- 2. In a car database there is a Make table with columns, MakeID and MakeName, a Model table with columns, ModelID, MakeID and ModelName and a Car table with columns, CarID, ModelID, VIN, ModelYear and StickerPrice.
+-- For all cars in the database, show Make Name, Model Name, VIN and Sticker Price from the Model and Car tables in one result set.
+SELECT MakeName, ModelName, VIN, StickerPrice FROM make INNER JOIN model ON make.MakeID = model.MakeID INNER JOIN car ON model.ModelID = car.ModelID;
+
+-- 3. In a car database there is a Model table with columns, ModelID, MakeID and ModelName and a Car table with columns, CarID, ModelID, VIN, ModelYear and StickerPrice.
+-- Show all Model names from the Model table along with VIN from the Car table. Make sure models that aren’t in the Car table still show in the results!
+SELECT ModelName, VIN FROM model LEFT OUTER JOIN car ON car.ModelID = model.ModelID;
+
+-- 4. In a car database there is a Sale table with columns, SaleID, CarID, CustomerID, LocationID, SalesRepID, SaleAmount and SaleDate. The database also has a SalesRep table with columns, SalesRepID, FirstName, LastName, SSN, PhoneNumber, StreetAddress, City, State and ZipCode.
+-- Show all SaleDate, SaleAmount, and SalesRep First and Last name from Sale and SalesRep. Make sure that all Sales appear in results even if there is no SalesRep associated to the sale.
+SELECT sale.SaleDate, sale.SaleAmount, salesRep.firstName, salesRep.lastName FROM sale LEFT OUTER JOIN salesrep ON sale.SalesRepID = salesrep.SalesRepID;
+
+-- 5. There are two tables Fruit and Vegetable table. The Fruit table has a FruitID and a Name column and the Vegetable table has a VegetableID and Name column.
+-- Create a distinct result set of fruit and vegetable names.
+SELECT fruit.Name FROM fruit UNION SELECT vegetable.Name FROM vegetable;
+
+-- 6. There are two tables Fruit and Vegetable table. The Fruit table has a FruitID and a Name column and the Vegetable table has a VegetableID and Name column.
+-- Create a list of all fruits and vegetables starting with the letters A through K . In other words all fruit and vegetables that don't start with the letter L to Z.
+SELECT fruit.Name FROM fruit WHERE fruit.Name BETWEEN "A" AND "L" UNION SELECT vegetable.Name FROM vegetable WHERE vegetable.Name BETWEEN "A" AND "L";
+
+-- 7. There are two tables Fruit and Vegetable table. The Fruit table has a FruitID and a Name column and the Vegetable table has a VegetableID and Name column.
+-- Create a list of fruits and vegetables that includes any potential duplicate values. Ensure that it is in alphabetical order so that the duplicates are next to each other!
+SELECT fruit.Name FROM fruit UNION ALL SELECT vegetable.Name FROM vegetable ORDER BY Name ASC;
+
+-- 8. There are two tables Fruit and Vegetable table. The Fruit table has a FruitID and a Name column and the Vegetable table has a VegetableID and Name column.
+-- Create an alphabetical list of produce that is considered both a fruit and a vegetable.
+SELECT name FROM fruit INTERSECT SELECT name FROM vegetable ORDER BY name ASC;
+
+-- 9. There are two tables Fruit and Vegetable table. The Fruit table has a FruitID and a Name column and the Vegetable table has a VegetableID and Name column.
+-- Create an alphabetical list of fruits that are NOT considered a vegetable.
+SELECT name FROM fruit EXCEPT SELECT name FROM vegetable ORDER BY name ASC;
+
+-- 10. There are two tables Fruit and Vegetable table. The Fruit table has a FruitID and a Name column and the Vegetable table has a VegetableID and Name column.
+-- Create an alphabetical list of vegetables that are NOT considered a fruit.
+SELECT name FROM vegetable EXCEPT SELECT name FROM fruit ORDER BY name ASC;
+
+-- 11. In a car database there is a Model table with columns, ModelID, MakeID and ModelName and a Car table with columns, CarID, ModelID, VIN, ModelYear and StickerPrice.
+-- Use a subquery along with IN to list all the Model Names with a Sticker Price greater than $30000
+SELECT ModelName FROM Model WHERE ModelID IN ( SELECT ModelID FROM Car WHERE StickerPrice > 30000 );
+
+-- 12. In a car database there is a Sale table with columns, SaleID, CarID, CustomerID, LocationID, SalesRepID, SaleAmount and SaleDate and a Car table with columns, CarID, ModelID, VIN, ModelYear and StickerPrice.
+-- Use a subquery along with IN to list all sales of cars with Sticker Price greater than $30000. Include all columns.
+SELECT * FROM Sale WHERE CarID IN ( SELECT CarID FROM Car WHERE StickerPrice > 30000 );
+
+-- 13. In a car database there is a Sale table with columns, SaleID, CarID, CustomerID, LocationID, SalesRepID, SaleAmount and SaleDate and a Customer table with columns, CustomerID, FirstName, LastName, Gender and SSN.
+-- Use a subquery along with IN to list all sales to female customers. (Gender = 'F') Select all columns.
+SELECT * FROM sale WHERE sale.CustomerID IN (SELECT CustomerID FROM customer WHERE customer.Gender = 'F');
+
+
+-- 14. In a car database there is a Sale table with columns, SaleID, CarID, CustomerID, LocationID, SalesRepID, SaleAmount and SaleDate and a Customer table with columns, CustomerID, FirstName, LastName, Gender and SSN.
+-- Use a subquery as a derived table to show all sales to female ('F') customers. Select all columns from the Sale table only.
+SELECT * FROM Sale AS s 
+INNER JOIN (
+  SELECT CustomerID FROM Customer
+  WHERE Gender = 'F'
+) AS c 
+ON s.CustomerID = c.CustomerID;
+
+
 
 
 
 
 -- Querying Relational Databases Cheatsheet
-SQL JOINs
+-- SQL JOINs
 
 -- JOINs merge related data from multiple tables together in to result set.
 -- The two most common types of joins are:
