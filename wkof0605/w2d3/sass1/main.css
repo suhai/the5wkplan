@@ -2,7 +2,7 @@
 .banner .slogan, .banner span {
   position: absolute; }
 
-h1 {
+h1, .banner span {
   text-align: center;
   vertical-align: middle; }
 
@@ -12,7 +12,7 @@ h1 {
 .banner {
   font-family: 'Pacifico', cursive;
   height: 400px;
-  background-image: url("https://s3.amazonaws.com/codecademy-content/courses/Sass/lemonade2.png");
+  background-image: url("http://www.pngmart.com/files/3/Lime-Splash-PNG-Photos.png");
   border-top: 4px solid black;
   border-bottom: 4px solid black; }
   .banner .slogan {

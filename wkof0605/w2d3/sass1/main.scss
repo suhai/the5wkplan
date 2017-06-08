@@ -25,11 +25,11 @@ h1 {
     @extend %absolute;
   }
   span {
-    // @extend center;
+    @extend %center;
     width: 40%;
     left: 30%;
     @extend %absolute;
-    // @extend center;
+    @extend %center;
   }
 }
 
