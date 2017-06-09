@@ -1,6 +1,6 @@
 /* ==========  SQL NOTES (PostgreSQL) ==========
 
-1. run ~$ psql to initiate psql. You may get soemthing like:
+run ~$ psql to initiate psql. You may get soemthing like:
 
 ➜  ~ psql
 psql (9.6.2)
@@ -8,8 +8,13 @@ Type "help" for help.
 
 suhai=#
 
-2. create a new database with the a command like 'CREATE DATABASE final_test;' on the above line, like :
+
+DATABASES
+1. create a new database with the a command like 'CREATE DATABASE final_test;' on the above line, like :
 suhai=# CREATE DATABASE final_test;
+
+2. drop a database with the a command like 'DROP DATABASE some_test;' on the above line, like :
+suhai=# DROP DATABASE some_test;
 
 3. Type '\q' to quit or exit psql, like :
 suhai=# \q
@@ -45,7 +50,7 @@ Type "help" for help.
 
 bank=#
 
-7. Typing '\d' would show a list of relations within the 'bank database' like:
+7. Typing '\d' would show a list of relations(tables) within the 'bank database' like:
 
 bank=# \d
                  List of relations
@@ -95,6 +100,78 @@ bank=#
        2 | 222-22-2222 | I            | 372 Clearwater Blvd | Woburn    | MA    | 01801
 (2 rows)
 bank=# SELECT * FROM customer LIMIT 2;
+
+
+
+TABLES
+1. create a new table with the following syntax:
+CREATE TABLE table_name
+(
+  column1 datatype,
+  column2 datatype,
+  column3 datatype,
+  .....
+   columnN datatype,
+   PRIMARY KEY
+  ( one or more columns )
+);
+
+Ex1.
+CREATE TABLE employees
+(
+  name TEXT NOT NULL,
+  age INT NOT NULL,
+  city CHAR(50),
+  salary REAL
+);
+
+1b. To insert data into the table above:
+INSERT INTO employees (name, age, city, salary) VALUES
+    ('Oliver Twist', 18, 'San Francisco', 150000),
+    ('John Bull', 12, 'Larabanga', 180000),
+    ('Sherlock Holmes', 36, 'Accra', 120000),
+    ('Simon Peter', 20, 'Portland', 135000);
+
+Ex.2
+CREATE TABLE department
+(
+  dept CHAR(50) NOT NULL,
+  emp_id INT NOT NULL
+);
+
+testdb-# \d
+
+List of relations
+ Schema |    Name    | Type  |  Owner
+--------+------------+-------+----------
+ public | company    | table | postgres
+ public | department | table | postgres
+(2 rows)
+
+testdb-# \d company
+
+Table "public.company"
+Column   |     Type      | Modifiers
+-----------+---------------+-----------
+ id        | integer       | not null
+ name      | text          | not null
+ age       | integer       | not null
+ address   | character
+(50) |
+ salary    | real          |
+ join_date | date          |
+Indexes:
+"company_pkey" PRIMARY KEY, btree (id)
+
+2. To drop a tables:
+a. testdb-# DROP TABLE table_name;
+b. testdb-# DROP TABLE IF EXISTS table_name;
+
+3. To drop a table, and all the other objects that depend on it, use either of:
+a. testdb-# DROP TABLE table_name CASCADE;
+b. testdb-# DROP TABLE IF EXISTS table_name CASCADE;
+Use CASCADE with great care.
+
 
 
 
